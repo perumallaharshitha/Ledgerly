@@ -24,10 +24,11 @@ exports.register = async (req, res) => {
 
     res.cookie("access_token", token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      sameSite: "none", 
+      secure: true,     
       maxAge: 24 * 60 * 60 * 1000,
     });
+
 
     res.status(201).json({
       user: { email: user.email, username: user.username },
