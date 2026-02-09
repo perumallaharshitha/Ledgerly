@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Card from "../components/Card";
 import "./Auth.css";
 
@@ -9,7 +9,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
+
+  const navigate = useNavigate(); 
 
   const validate = () => {
     if (!username.trim()) return "Username is required";
@@ -25,7 +26,6 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setSuccess("");
 
     const validationError = validate();
     if (validationError) {
@@ -46,12 +46,7 @@ function Register() {
         setError(data.detail || "Registration failed");
         return;
       }
-
-      setSuccess("Account created! You can now login.");
-      setUsername("");
-      setEmail("");
-      setPassword("");
-      setConfirmPassword("");
+      navigate("/login");
     } catch {
       setError("Server not responding. Try again later.");
     }
@@ -64,7 +59,6 @@ function Register() {
         <p>Start managing your money with Ledgerly</p>
 
         {error && <div className="auth-error">{error}</div>}
-        {success && <div className="auth-success">{success}</div>}
 
         <form onSubmit={handleSubmit}>
           <input
