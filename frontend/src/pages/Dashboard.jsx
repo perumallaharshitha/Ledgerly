@@ -15,12 +15,14 @@ function Dashboard({ onLogout, user }) {
   const fetchDashboard = async () => {
     try {
       const [balRes, txRes] = await Promise.all([
-        fetch("http://localhost:5000/api/wallet/balance", {
-          credentials: "include",
-        }),
-        fetch("http://localhost:5000/api/transactions", {
-          credentials: "include",
-        }),
+        fetch(
+          "https://ledgerly-nez0.onrender.com/api/wallet/balance",
+          { credentials: "include" }
+        ),
+        fetch(
+          "https://ledgerly-nez0.onrender.com/api/transactions",
+          { credentials: "include" }
+        ),
       ]);
 
       if (balRes.ok) {
@@ -45,34 +47,48 @@ function Dashboard({ onLogout, user }) {
     e.preventDefault();
     if (!addAmount) return;
 
-    await fetch("http://localhost:5000/api/wallet/add-money", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount: Number(addAmount) }),
-    });
+    try {
+      await fetch(
+        "https://ledgerly-nez0.onrender.com/api/wallet/add-money",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: Number(addAmount) }),
+        }
+      );
 
-    setAddAmount("");
-    fetchDashboard();
+      setAddAmount("");
+      fetchDashboard();
+    } catch (err) {
+      console.error("Add money error:", err);
+    }
   };
 
   const handleTransfer = async (e) => {
     e.preventDefault();
     if (!transferAmount || !recipientEmail) return;
 
-    await fetch("http://localhost:5000/api/wallet/transfer", {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        amount: Number(transferAmount),
-        to_email: recipientEmail,
-      }),
-    });
+    try {
+      await fetch(
+        "https://ledgerly-nez0.onrender.com/api/wallet/transfer",
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: Number(transferAmount),
+            to_email: recipientEmail,
+          }),
+        }
+      );
 
-    setTransferAmount("");
-    setRecipientEmail("");
-    fetchDashboard();
+      setTransferAmount("");
+      setRecipientEmail("");
+      fetchDashboard();
+    } catch (err) {
+      console.error("Transfer error:", err);
+    }
   };
 
   return (

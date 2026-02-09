@@ -11,10 +11,11 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/api/auth/check", {
-      credentials: "include",
-    })
-      .then(res => res.ok ? res.json() : null)
+    fetch(
+      "https://ledgerly-nez0.onrender.com/api/auth/check",
+      { credentials: "include" }
+    )
+      .then(res => (res.ok ? res.json() : null))
       .then(data => {
         if (data?.user) {
           setIsAuthenticated(true);
@@ -31,10 +32,13 @@ function App() {
   };
 
   const handleLogout = async () => {
-    await fetch("/api/auth/logout", {
-      method: "POST",
-      credentials: "include",
-    });
+    await fetch(
+      "https://ledgerly-nez0.onrender.com/api/auth/logout",
+      {
+        method: "POST",
+        credentials: "include",
+      }
+    );
     setUser(null);
     setIsAuthenticated(false);
   };
@@ -44,23 +48,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/login"
-          element={!isAuthenticated ? <Login onLogin={handleLogin} /> : <Navigate to="/dashboard" />}
-        />
-        <Route
-          path="/register"
-          element={!isAuthenticated ? <Register /> : <Navigate to="/dashboard" />}
-        />
-        <Route
-          path="/dashboard"
-          element={isAuthenticated ? <Dashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />}
-        />
+        <Route path="/login" element={!isAuthenticated ? <Login onLogin={handleLogin} /> : <Navigate to="/dashboard" />} />
+        <Route path="/register" element={!isAuthenticated ? <Register /> : <Navigate to="/dashboard" />} />
+        <Route path="/dashboard" element={isAuthenticated ? <Dashboard user={user} onLogout={handleLogout} /> : <Navigate to="/login" />} />
         <Route path="/learn-more" element={<LearnMore />} />
-        <Route
-          path="/"
-          element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />}
-        />
+        <Route path="/" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
       </Routes>
     </BrowserRouter>
   );
