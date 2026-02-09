@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
-import "./Dashboard.css";
+import "./DashBoard.css";
 
 function Dashboard({ onLogout, user }) {
   const navigate = useNavigate();
