@@ -1,0 +1,58 @@
+.learnmore-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #6a7cff, #7a5fc4);
+}
+
+.learnmore-card {
+  max-width: 900px;
+  width: 100%;
+  padding: 40px 30px;
+  border-radius: 16px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.learnmore-card h1 {
+  margin-bottom: 20px;
+  color: #6a7cff;
+}
+
+.learnmore-card h2 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #2f3fe0;
+}
+
+.learnmore-card p,
+.learnmore-card li {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.learnmore-card ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.secondary-btn {
+  margin-top: 24px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6a7cff, #7a5fc4);
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.secondary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(106, 124, 255, 0.35);
+}

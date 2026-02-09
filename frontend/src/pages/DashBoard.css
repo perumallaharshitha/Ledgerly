@@ -1,0 +1,138 @@
+.dashboard-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid #e5e7eb;
+  font-size: 0.95rem;
+  background: #fafafa;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6a7cff;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(106, 124, 255, 0.15);
+}
+
+button {
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6a7cff, #7a5fc4);
+  border: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(106, 124, 255, 0.35);
+}
+
+.header-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-left h1 {
+  margin-bottom: 4px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  border-radius: 12px;
+}
+
+.balance-card {
+  background: linear-gradient(135deg, #6a7cff, #7a5fc4);
+  color: #ffffff;
+}
+
+.balance-card h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.balance-card p {
+  font-size: 2.6rem;
+  font-weight: 600;
+  margin: 8px 0;
+}
+
+.money-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.money-grid form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.transaction-table {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.transaction-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.transaction-row.header {
+  font-weight: bold;
+  color: #555;
+}
+
+.transaction-row.sent .negative {
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.transaction-row.received .positive {
+  color: #4caf50;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .money-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
