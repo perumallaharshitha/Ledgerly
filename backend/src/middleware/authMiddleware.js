@@ -1,12 +1,9 @@
 const jwt = require("jsonwebtoken");
-
 const authMiddleware = (req, res, next) => {
   const token = req.cookies?.access_token;
-
   if (!token) {
-    return res.status(401).json({ detail: "Not authenticated" });
+    return res.status(401).json({ detail: "Not authenticated - no token" });
   }
-
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userEmail = decoded.sub;
@@ -15,5 +12,4 @@ const authMiddleware = (req, res, next) => {
     return res.status(401).json({ detail: "Invalid token" });
   }
 };
-
 module.exports = authMiddleware;

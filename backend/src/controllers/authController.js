@@ -54,7 +54,6 @@ exports.login = async (req, res) => {
 
     const token = generateToken(user.email);
 
-    // UPDATED COOKIE
     res.cookie("access_token", token, {
       httpOnly: true,
       sameSite: "none",
